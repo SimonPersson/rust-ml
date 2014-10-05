@@ -54,3 +54,10 @@ impl<T: ToPrimitive> Div<T, Point> for Point {
         Point::new(self.x / rhs, self.y / rhs, self.z / rhs)
     }
 }
+
+impl<T: ToPrimitive> Mul<T, Point> for Point {
+    fn mul(&self, rhs: &T) -> Point {
+        let rhs = rhs.to_f64().unwrap();
+        Point::new(self.x * rhs, self.y * rhs, self.z * rhs)
+    }
+}
