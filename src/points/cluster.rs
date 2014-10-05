@@ -32,6 +32,7 @@ impl Cluster {
             points: Vec::from_fn(num_points, |_| Point {
                         x: normal_x.ind_sample(rng),
                         y: normal_y.ind_sample(rng),
+                        z: normal_y.ind_sample(rng),
                     }),
             centroid: centroid,
         }

@@ -2,12 +2,10 @@ extern crate ml;
 
 use ml::points::Cluster;
 use ml::points::Point;
-use ml::plots::Plot;
-use ml::plots::Draw;
 use ml::kmeans;
 
-fn rand_cluster(x: f64, y: f64) -> Cluster {
-    Cluster::gaussian(Point::new(x, y), 3.0, 20)
+fn rand_cluster(x: f64, y: f64, z: f64) -> Cluster {
+    Cluster::gaussian(Point::new(x, y, z), 3.0, 20)
 }
 
 // Creates four normally distributed clusters, gathers up the points, and runs kmeans on them
@@ -15,17 +13,15 @@ fn rand_cluster(x: f64, y: f64) -> Cluster {
 // TODO: points are currently lost if they have the same rounded-int coordinates
 pub fn main() {
     let clusters = [
-        rand_cluster(12.0, 12.0), 
-        rand_cluster(12.0, 38.0), 
-        rand_cluster(38.0, 38.0), 
-        rand_cluster(38.0, 12.0)];
+        rand_cluster(12.0, 12.0, 12.0), 
+        rand_cluster(12.0, 38.0, 12.0), 
+        rand_cluster(38.0, 38.0, 38.0), 
+        rand_cluster(38.0, 12.0, 38.0)];
     let points: Vec<Point> = clusters.iter().flat_map(|c| c.iter().map(|&p| p)).collect();
-    let graph = Plot::from_points(points.as_slice());
-    graph.draw();
     
     let clusters = kmeans::run(points.as_slice(), 4);
-    println!("num clusters = {}", clusters.len());
-
-    let graph = Plot::from_clusters(clusters.as_slice());
-    graph.draw();
+    for cluster in clusters.iter()
+    {
+        println!("{}", cluster.centroid());
+    }
 }

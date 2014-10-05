@@ -4,7 +4,6 @@ rust-ml
 A machine learning library implemented in rust.
 Currently provides:
 * A basic kmeans implementation
-* A basic ascii-printable graph
 
 ## Prerequisites
 * Rust nightly; download at [rust-lang.org](http://www.rust-lang.org/)
