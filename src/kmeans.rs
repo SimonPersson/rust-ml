@@ -8,11 +8,7 @@ pub fn run(points: &[Point], num_clusters: uint) -> Vec<Cluster> {
     let mut old_centroids = centroids(clusters.as_slice());
     init_assign_points(clusters.as_mut_slice(), points);
     let mut new_centroids = centroids(clusters.as_slice());
-    println!("running kmeans...");
-    let mut iteration = 0u;
     while old_centroids != new_centroids {
-        iteration += 1;
-        println!("iteration {}", iteration);
         reassign_points(clusters.as_mut_slice());
         old_centroids = new_centroids;
         new_centroids = centroids(clusters.as_slice());
