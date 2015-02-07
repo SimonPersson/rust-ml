@@ -26,6 +26,7 @@ impl Cluster {
     pub fn gaussian(centroid: Point, std_dev: f64, num_points: u32) -> Cluster {
         let normal_x = Normal::new(centroid.x, std_dev);
         let normal_y = Normal::new(centroid.y, std_dev);
+        let normal_z = Normal::new(centroid.z, std_dev);
         let rng = &mut rand::thread_rng();
 
         Cluster {
@@ -33,13 +34,9 @@ impl Cluster {
                     .map(|_| Point {
                         x: normal_x.ind_sample(rng),
                         y: normal_y.ind_sample(rng),
-<<<<<<< HEAD
-                        z: normal_y.ind_sample(rng),
-                    }),
-=======
+                        z: normal_z.ind_sample(rng)
                     })
                     .collect(),
->>>>>>> 021f4bb131acfb10e323d6bece75cef0f56ba5b6
             centroid: centroid,
         }
     }

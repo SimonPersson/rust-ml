@@ -22,6 +22,6 @@ pub fn main() {
     let clusters = kmeans::run(points.as_slice(), 4);
     for cluster in clusters.iter()
     {
-        println!("{}", cluster.centroid());
+        println!("{:?}", cluster.centroid());
     }
 }
